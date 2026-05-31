@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Task List</h1>
+<a href="#">Create new task</a>
+
+<ul>
+    {% for task in tasks %}
+        <li>
+            <a href="#">{{ task.title }}</a>
+            {{ task.status }} {{ task.priority }}
+        </li>
+    {% empty %}
+        <li>You have no tasks</li>
+    {% endfor %}
+</ul>
+{% endblock %}
