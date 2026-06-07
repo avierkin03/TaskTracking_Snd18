@@ -1,4 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="container mt-3">
+    <h2>{{ task.title }}</h2>
+    <p>{{ task.description }}</p>
+    <p>Status: {{ task.status }}</p>
+    <p>Priority: {{ task.priority }}</p>
 
+    {% if task.deadline %}
+        <p>Deadline: {{ task.deadline }}</p>
+    {% endif %}
+
+    <p>Owner: {{ task.owner }}</p>
+
+    {% if task.owner == request.user %}
+        <a href="#" class="btn btn-warning">Edit</a>
+        <a href="#" class="btn btn-danger">Delete</a>
+    {% endif %}
+</div>
 {% endblock %}
