@@ -14,7 +14,7 @@
 
     {% if task.owner == request.user %}
         <a href="#" class="btn btn-warning">Edit</a>
-        <a href="#" class="btn btn-danger">Delete</a>
+        <a href="{% url 'tasks:task-delete' pk=task.pk %}" class="btn btn-danger">Delete</a>
     {% endif %}
 </div>
 {% endblock %}
