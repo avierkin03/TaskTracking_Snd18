@@ -13,7 +13,7 @@
     <p>Owner: {{ task.owner }}</p>
 
     {% if task.owner == request.user %}
-        <a href="#" class="btn btn-warning">Edit</a>
+        <a href="{% url 'tasks:task-update' pk=task.pk %}" class="btn btn-warning">Edit</a>
         <a href="{% url 'tasks:task-delete' pk=task.pk %}" class="btn btn-danger">Delete</a>
     {% endif %}
 </div>
