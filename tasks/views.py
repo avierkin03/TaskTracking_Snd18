@@ -17,11 +17,14 @@ class TaskListView(ListView):
         queryset = super().get_queryset()
         status = self.request.GET.get("status")
         priority = self.request.GET.get("priority")
+        owner = self.request.GET.get("owner")
 
         if status:
             queryset = queryset.filter(status = status)
         if priority:
             queryset = queryset.filter(priority = priority)
+        if owner:
+            queryset = queryset.filter(owner = owner)
 
         return queryset
 
@@ -29,6 +32,14 @@ class TaskListView(ListView):
         context = super().get_context_data(**kwargs)
         context["form"] = TaskFilterForm()
         return context
+
+
+# Створення нової задачі
+class TaskCraeteView(CreateView):
+    model = Task
+    form_class = TaskCreateForm
+    template_name = "tasks/task_create.html"
+    success_url = reverse_lazy("tasks:task-list")
 
 
 # Детальний перегляд задачі

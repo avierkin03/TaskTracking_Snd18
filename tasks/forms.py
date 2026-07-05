@@ -1,5 +1,6 @@
 from django import forms
 from .models import Task
+from django.contrib.auth.models import User
 
 # Форма для фільтра задач
 class TaskFilterForm(forms.Form):
@@ -19,6 +20,12 @@ class TaskFilterForm(forms.Form):
 
     status = forms.ChoiceField(choices=STATUS_CHOICES, label="Status", required=False)
     priority = forms.ChoiceField(choices=PRIORITY_CHOICES, label="Priority", required=False)
+    owner = forms.ModelChoiceField(
+        queryset = User.objects.all(),
+        label = "Owner",
+        required=False,
+        empty_label = "All"
+    )
 
     def __init__(self, *args, **kwargs):
         super(TaskFilterForm, self).__init__(*args, **kwargs)
